@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: openjdk:11-jre-slim
+    container_name: jkprintify-web
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["java", "-jar", "your-app.jar"]
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    container_name: jkprintify-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: jkprintifydb
+    ports:
+      - "3306:3306"

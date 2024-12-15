@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Order Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>Place an Order</h2>
+  <form action="#" th:action="@{/orders/submit}" th:object="${order}" method="post">
+    <!-- Student Name -->
+    <div class="form-group">
+      <label for="studentName">Student Name</label>
+      <input type="text" id="studentName" class="form-control" th:field="*{studentName}" required>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" th:field="*{email}" required>
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number</label>
+      <input type="text" id="mobileNumber" class="form-control" th:field="*{mobileNumber}" required>
+    </div>
+
+    <!-- PDF Link (Optional) -->
+    <div class="form-group">
+      <label for="pdfLink">PDF Link (if applicable)</label>
+      <input type="text" id="pdfLink" class="form-control" th:field="*{pdfLink}">
+    </div>
+
+    <!-- Order Quantity -->
+    <div class="form-group">
+      <label for="orderQuantity">Quantity</label>
+      <input type="number" id="orderQuantity" class="form-control" th:field="*{orderQuantity}" required>
+    </div>
+
+    <!-- Message -->
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" class="form-control" th:field="*{message}"></textarea>
+    </div>
+
+    <!-- Deadline Date -->
+    <div class="form-group">
+      <label for="deadlineDate">Deadline Date</label>
+      <input type="date" id="deadlineDate" class="form-control" th:field="*{deadlineDate}" required>
+    </div>
+
+    <!-- Service Selection -->
+    <!-- Service Selection -->
+    <div class="form-group">
+      <label for="serviceId">Choose Service</label>
+      <select class="form-control" th:field="*{service.id}" id="serviceId" required>
+        <option th:each="service : ${services}" th:value="${service.id}" th:text="${service.name}"></option>
+      </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit Order</button>
+  </form>
+</div>
+</body>
+</html>
